@@ -19,7 +19,7 @@ commands:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
 jobs:
-  parse-by-yml:
+  test-parse-by-yml:
     docker:
       - image: circleci/node:12.16.1
     steps:
@@ -27,7 +27,16 @@ jobs:
       - command-yarn-install
       - run: node parse.js yes24-book-id.yml
 
+  test-parse-by-single-id:
+    docker:
+      - image: circleci/node:12.16.1
+    steps:
+      - checkout
+      - command-yarn-install
+      - run: node parse.js 87631628
+
 workflows:
-  parse:
+  test:
     jobs:
-      - parse-by-yml
+      - test-parse-by-yml
+      - test-parse-by-single-id
