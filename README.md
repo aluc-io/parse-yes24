@@ -1,4 +1,8 @@
 # parse yes24
+
+[![CircleCI](https://circleci.com/gh/aluc-io/parse-yes24/tree/master.svg?style=svg)](https://circleci.com/gh/aluc-io/parse-yes24/tree/master)
+
+
 [yes24](http://www.yes24.com) is online bookstore in Korea.
 
 ## Parse by single book id
@@ -50,3 +54,4 @@ parse bookId: 87631628
   }
 ]
 ```
+
