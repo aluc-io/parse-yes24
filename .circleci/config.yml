@@ -1,0 +1,33 @@
+version: 2.1
+
+commands:
+  command-yarn-install:
+    description: "yarn install with cache"
+    steps:
+      - restore_cache:
+          name: restore_cache_node_modules
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: yarn install
+          command: |
+              yarn install
+      - save_cache:
+          name: save_cache_node_modules
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+jobs:
+  parse-by-yml:
+    docker:
+      - image: circleci/node:12.16.1
+    steps:
+      - checkout
+      - command-yarn-install
+      - run: node parse.js yes24-book-id.yml
+
+workflows:
+  parse:
+    jobs:
+      - parse-by-yml
