@@ -18,12 +18,14 @@ const parseYes24BookInfo = async (yes24BookId) => {
   const title = $('#yDetailTopWrap > div.topColRgt > div.gd_infoTop > div > h2').text()
   const subTitle = $('#yDetailTopWrap > div.topColRgt > div.gd_infoTop > div > h3').text()
   const mainImgUrl = $('#yDetailTopWrap > div.topColLft > div.gd_imgArea > span > em > img').attr('src')
+  const date = $('#yDetailTopWrap > div.topColRgt > div.gd_infoTop > span.gd_pubArea > span.gd_date').text()
   // TODO: 필요한 정보 더 추가하기
 
   return {
     title,
     subTitle,
     mainImgUrl,
+    date,
   }
 }
 
